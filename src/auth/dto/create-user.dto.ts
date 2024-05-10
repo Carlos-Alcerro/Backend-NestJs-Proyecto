@@ -1,9 +1,13 @@
 import {
   IsEmail,
+  IsNumber,
+  IsOptional,
+  IsPositive,
   IsString,
   Matches,
   MaxLength,
   MinLength,
+  IsArray,
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -27,4 +31,19 @@ export class CreateUserDto {
   @IsString()
   @MinLength(3)
   name: string;
+
+  @IsOptional()
+  @IsArray()
+  roles?: string[];
+
+  @IsOptional()
+  @MinLength(8)
+  @MaxLength(8)
+  telefono?: number;
+
+  @IsString()
+  @MinLength(5)
+  @MaxLength(50)
+  @IsOptional()
+  direccion?: string;
 }

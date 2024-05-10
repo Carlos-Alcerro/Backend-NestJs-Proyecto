@@ -1,11 +1,13 @@
 import {
   Column,
   Entity,
+  ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ProductImage } from './product-image.entity';
+import { User } from 'src/auth/entities/auth.entity';
 
 @Entity()
 export class Product {
@@ -21,8 +23,8 @@ export class Product {
   @Column('float', { default: 0 })
   precio?: number;
 
-  @Column('text')
-  categoria: string;
+  @Column('text', { default: 'Sin categoria' })
+  categoria?: string;
 
   @Column('int', { default: 0 })
   inStock?: number;
@@ -32,4 +34,7 @@ export class Product {
     eager: true,
   })
   images?: ProductImage[];
+
+  @ManyToOne(() => User, (user) => user.product, { eager: true })
+  user: User;
 }

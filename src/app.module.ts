@@ -6,6 +6,7 @@ import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { ProductsModule } from './products/products.module';
 import { FilesModule } from './files/files.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { FilesModule } from './files/files.module';
     AuthModule,
     ProductsModule,
     FilesModule,
+    CommonModule,
   ],
   controllers: [],
   providers: [],

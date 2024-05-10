@@ -5,6 +5,7 @@ import {
   IsOptional,
   IsPositive,
   IsString,
+  Matches,
   MaxLength,
   MinLength,
 } from 'class-validator';
@@ -12,27 +13,21 @@ import {
 export class CreateProductDto {
   @IsString()
   @MinLength(2)
-  @MaxLength(50)
   nombreProd: string;
 
   @IsString()
   @MinLength(2)
-  @MaxLength(50)
   descripcion: string;
 
-  @IsNumber()
-  @IsPositive()
-  @IsOptional()
+  @Matches(/^(?:\d+|\d*\.\d+)$/, { message: 'Ingresa un precio valido' })
   precio?: number;
 
   @IsString()
   @MinLength(2)
-  @MaxLength(50)
-  categoria: string;
-
-  @IsInt()
-  @IsPositive()
   @IsOptional()
+  categoria?: string;
+
+  @Matches(/^[1-9]\d*$/, { message: 'Ingresa un numero valido' })
   inStock?: number;
 
   @IsString({ each: true })
